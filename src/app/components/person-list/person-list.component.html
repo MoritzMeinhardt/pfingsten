@@ -1,1 +1,22 @@
-<p>person-list works!</p>
+<mat-toolbar color="primary">Person List</mat-toolbar>
+
+<mat-list>
+  <mat-list-item *ngFor="let person of people">
+    <button mat-button (click)="select(person.id)">
+      {{ person.name }}
+    </button>
+    <button mat-icon-button color="accent" (click)="edit(person)">
+      <mat-icon>edit</mat-icon>
+    </button>
+    <button mat-icon-button color="warn" (click)="remove(person.id)">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </mat-list-item>
+</mat-list>
+
+<mat-form-field class="person-input" appearance="outline">
+  <mat-label>Add Person</mat-label>
+  <input matInput [(ngModel)]="newPersonName" (keyup.enter)="add()" />
+</mat-form-field>
+
+<button mat-flat-button color="primary" (click)="add()">Add</button>

@@ -1,11 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PersonService } from '../../services/person.service';
+import { Person } from '../../models/person.model';
+import {NgIf} from '@angular/common';
+import {MatCard} from '@angular/material/card';
+import {MatButton} from '@angular/material/button';
 
 @Component({
   selector: 'app-person-detail',
-  imports: [],
   templateUrl: './person-detail.component.html',
-  styleUrl: './person-detail.component.less'
+  imports: [
+    NgIf,
+    MatCard,
+    MatButton
+  ],
+  styleUrls: ['./person-detail.component.less']
 })
-export class PersonDetailComponent {
+export class PersonDetailComponent implements OnInit {
+  selectedPerson: Person | null = null;
 
+  constructor(private personService: PersonService) {}
+
+  ngOnInit(): void {
+    this.personService.selectedPerson$.subscribe(p => this.selectedPerson = p);
+  }
+
+  addDrink(type: 'beer' | 'aperol' | 'wine' | 'longDrink') {
+    this.personService.addDrink(type);
+  }
 }

@@ -1,1 +1,22 @@
-<p>person-detail works!</p>
+<div *ngIf="selectedPerson; else noSelection" class="detail-container">
+  <h2>{{ selectedPerson.name }}</h2>
+
+  <div class="drink-buttons">
+    <button mat-raised-button color="primary" (click)="addDrink('beer')">Beer 🍺</button>
+    <button mat-raised-button color="accent" (click)="addDrink('aperol')">Aperol 🍹</button>
+    <button mat-raised-button color="warn" (click)="addDrink('wine')">Wine 🍷</button>
+    <button mat-raised-button color="secondary" (click)="addDrink('longDrink')">Long Drink 🍸</button>
+  </div>
+
+  <mat-card class="drink-summary">
+    <h3>Drink Count</h3>
+    <p>Beer: {{ selectedPerson.drinks.beer }}</p>
+    <p>Aperol: {{ selectedPerson.drinks.aperol }}</p>
+    <p>Wine: {{ selectedPerson.drinks.wine }}</p>
+    <p>Long Drink: {{ selectedPerson.drinks.longDrink }}</p>
+  </mat-card>
+</div>
+
+<ng-template #noSelection>
+  <p>Please select a person to start adding drinks.</p>
+</ng-template>

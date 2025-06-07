@@ -1,1 +1,46 @@
-<p>overview works!</p>
+<mat-card class="overview-card">
+  <h2>Drink Overview</h2>
+
+  <table mat-table [dataSource]="people" class="mat-elevation-z2">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let person"> {{ person.name }} </td>
+    </ng-container>
+
+    <!-- Beer Column -->
+    <ng-container matColumnDef="beer">
+      <th mat-header-cell *matHeaderCellDef> 🍺 </th>
+      <td mat-cell *matCellDef="let person"> {{ person.drinks.beer }} </td>
+    </ng-container>
+
+    <!-- Aperol Column -->
+    <ng-container matColumnDef="aperol">
+      <th mat-header-cell *matHeaderCellDef> 🍹 </th>
+      <td mat-cell *matCellDef="let person"> {{ person.drinks.aperol }} </td>
+    </ng-container>
+
+    <!-- Wine Column -->
+    <ng-container matColumnDef="wine">
+      <th mat-header-cell *matHeaderCellDef> 🍷 </th>
+      <td mat-cell *matCellDef="let person"> {{ person.drinks.wine }} </td>
+    </ng-container>
+
+    <!-- Long Drink Column -->
+    <ng-container matColumnDef="longDrink">
+      <th mat-header-cell *matHeaderCellDef> 🍸 </th>
+      <td mat-cell *matCellDef="let person"> {{ person.drinks.longDrink }} </td>
+    </ng-container>
+
+    <!-- Total Column -->
+    <ng-container matColumnDef="total">
+      <th mat-header-cell *matHeaderCellDef> 🧮 Total </th>
+      <td mat-cell *matCellDef="let person"> {{ getTotal(person.drinks) }} </td>
+    </ng-container>
+
+    <!-- Header & Rows -->
+    <tr mat-header-row *matHeaderRowDef="['name', 'beer', 'aperol', 'wine', 'longDrink', 'total']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['name', 'beer', 'aperol', 'wine', 'longDrink', 'total']"></tr>
+  </table>
+</mat-card>
