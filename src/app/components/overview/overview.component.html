@@ -1,41 +1,32 @@
 <mat-card class="overview-card">
   <h2>Drink Overview</h2>
-
-  <table mat-table [dataSource]="people" class="mat-elevation-z2">
-
-    <!-- Name Column -->
+  <table mat-table [dataSource]="people()" class="mat-elevation-z2">
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef> Name </th>
       <td mat-cell *matCellDef="let person"> {{ person.name }} </td>
     </ng-container>
-
-    <!-- Beer Column -->
     <ng-container matColumnDef="beer">
-      <th mat-header-cell *matHeaderCellDef> 🍺 </th>
+      <th mat-header-cell *matHeaderCellDef> Bier 🍺 </th>
       <td mat-cell *matCellDef="let person"> {{ person.drinks.beer }} </td>
     </ng-container>
-
-    <!-- Aperol Column -->
     <ng-container matColumnDef="aperol">
-      <th mat-header-cell *matHeaderCellDef> 🍹 </th>
+      <th mat-header-cell *matHeaderCellDef> Aperol 🍹 </th>
       <td mat-cell *matCellDef="let person"> {{ person.drinks.aperol }} </td>
     </ng-container>
-
-    <!-- Wine Column -->
     <ng-container matColumnDef="wine">
-      <th mat-header-cell *matHeaderCellDef> 🍷 </th>
+      <th mat-header-cell *matHeaderCellDef> Wein / Sekt🍷 </th>
       <td mat-cell *matCellDef="let person"> {{ person.drinks.wine }} </td>
     </ng-container>
-
-    <!-- Long Drink Column -->
     <ng-container matColumnDef="longDrink">
-      <th mat-header-cell *matHeaderCellDef> 🍸 </th>
+      <th mat-header-cell *matHeaderCellDef> Longdrink 🍸 </th>
       <td mat-cell *matCellDef="let person"> {{ person.drinks.longDrink }} </td>
     </ng-container>
-
-    <!-- Total Column -->
+    <ng-container matColumnDef="schnaps">
+      <th mat-header-cell *matHeaderCellDef> Schnaps 🫗 </th>
+      <td mat-cell *matCellDef="let person"> {{ person.drinks.schnaps }} </td>
+    </ng-container>
     <ng-container matColumnDef="total">
-      <th mat-header-cell *matHeaderCellDef> 🧮 Total </th>
+      <th mat-header-cell *matHeaderCellDef > 🧮 Total </th>
       <td mat-cell *matCellDef="let person"> {{ getTotal(person.drinks) }} </td>
     </ng-container>
 

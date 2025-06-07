@@ -1,20 +1,28 @@
 <div *ngIf="selectedPerson; else noSelection" class="detail-container">
-  <h2>{{ selectedPerson.name }}</h2>
+  <div class="detail-header" style="display: flex; align-items: center; gap: 16px;">
+    <h2>{{ selectedPerson.name }}</h2>
+    <button mat-button color="warn" (click)="deselect()">Deselect</button>
+  </div>
 
   <div class="drink-buttons">
     <button mat-raised-button color="primary" (click)="addDrink('beer')">Beer 🍺</button>
     <button mat-raised-button color="accent" (click)="addDrink('aperol')">Aperol 🍹</button>
     <button mat-raised-button color="warn" (click)="addDrink('wine')">Wine 🍷</button>
     <button mat-raised-button color="secondary" (click)="addDrink('longDrink')">Long Drink 🍸</button>
+    <button mat-raised-button color="primary" (click)="addDrink('schnaps')">Schnaps 🥃</button>
   </div>
 
   <mat-card class="drink-summary">
     <h3>Drink Count</h3>
-    <p>Beer: {{ selectedPerson.drinks.beer }}</p>
-    <p>Aperol: {{ selectedPerson.drinks.aperol }}</p>
-    <p>Wine: {{ selectedPerson.drinks.wine }}</p>
-    <p>Long Drink: {{ selectedPerson.drinks.longDrink }}</p>
+
+    <div class="drink-row" *ngFor="let type of ['beer', 'aperol', 'wine', 'longDrink', 'schnaps']">
+    <span class="label">
+      {{ type | titlecase }}: {{ $any(selectedPerson.drinks)[type] }}
+    </span>
+      <button mat-button color="warn" (click)="removeDrink($any(type))">➖</button>
+    </div>
   </mat-card>
+
 </div>
 
 <ng-template #noSelection>

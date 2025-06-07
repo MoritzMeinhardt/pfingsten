@@ -6,5 +6,6 @@ export interface Person {
     aperol: number;
     wine: number;
     longDrink: number;
+    schnaps: number;   // <-- Add this
   };
 }

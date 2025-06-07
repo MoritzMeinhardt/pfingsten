@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { PersonService } from '../../services/person.service';
-import { Person } from '../../models/person.model';
-import {NgIf} from '@angular/common';
+import {Component, OnInit} from '@angular/core';
+import {PersonService} from '../../services/person.service';
+import {Person} from '../../models/person.model';
+import {NgForOf, NgIf, TitleCasePipe} from '@angular/common';
 import {MatCard} from '@angular/material/card';
 import {MatButton} from '@angular/material/button';
 
@@ -11,7 +11,10 @@ import {MatButton} from '@angular/material/button';
   imports: [
     NgIf,
     MatCard,
-    MatButton
+    MatButton,
+    TitleCasePipe,
+    NgForOf,
+
   ],
   styleUrls: ['./person-detail.component.less']
 })
@@ -24,7 +27,13 @@ export class PersonDetailComponent implements OnInit {
     this.personService.selectedPerson$.subscribe(p => this.selectedPerson = p);
   }
 
-  addDrink(type: 'beer' | 'aperol' | 'wine' | 'longDrink') {
+  addDrink(type: 'beer' | 'aperol' | 'wine' | 'longDrink' | 'schnaps') {
     this.personService.addDrink(type);
+  }
+  removeDrink(type: 'beer' | 'aperol' | 'wine' | 'longDrink' | 'schnaps') {
+    this.personService.removeDrink(type);
+  }
+  deselect() {
+    this.personService.deselectPerson();
   }
 }
